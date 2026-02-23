@@ -22,6 +22,7 @@
 		5FEEDA8EC04E16759B927C1B /* DockItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57D879300286558DC4223E /* DockItemTests.swift */; };
 		668C5609C1A24A73061B52B3 /* VisualEffectBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6873BB079B5D0973DD9656A /* VisualEffectBackground.swift */; };
 		71B25B0C26898AD44CEE6614 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC950CD7A1D964475439CE /* MainWindowController.swift */; };
+		830AF654907F457E2E9296F6 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C627235EDC1542DB70B206 /* SettingsWindowController.swift */; };
 		8FA3BF25222836A2BEAD09BA /* PositionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFE56E160D750C84BF959D9 /* PositionSettingsView.swift */; };
 		96B01B5F15978292F6D79642 /* DockGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6857C983D1F9156397C0C6CC /* DockGroup.swift */; };
 		97BA8008BB415D2593D09AD0 /* ExtradockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EE7B194C4AD8866B7C9F72 /* ExtradockApp.swift */; };
@@ -71,6 +72,7 @@
 		B828E95F81E5E0DF3079DDA4 /* Extradock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Extradock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD6BF931C1BCDAA2D2BB87C9 /* LaunchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchService.swift; sourceTree = "<group>"; };
 		C2A1B06248072F31E961DC6E /* DockGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockGridView.swift; sourceTree = "<group>"; };
+		C9C627235EDC1542DB70B206 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		D43C4CD4012E4D4F53A38809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D64EE53C31FF04FB0BA1C2AE /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
 		D92CAB4EDCD0688EDFABDC0F /* DockViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockViewModelTests.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				93CC950CD7A1D964475439CE /* MainWindowController.swift */,
+				C9C627235EDC1542DB70B206 /* SettingsWindowController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				3016567A804E4B5D6934E019 /* RunningIndicatorView.swift in Sources */,
 				30C45A7959E8672E7346AB06 /* SettingsView.swift in Sources */,
 				44D24E6CA8FBA330582018A0 /* SettingsViewModel.swift in Sources */,
+				830AF654907F457E2E9296F6 /* SettingsWindowController.swift in Sources */,
 				668C5609C1A24A73061B52B3 /* VisualEffectBackground.swift in Sources */,
 				C24C529DCBC57C5431FBF3AE /* WindowObserver.swift in Sources */,
 			);

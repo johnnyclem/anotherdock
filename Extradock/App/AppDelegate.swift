@@ -6,6 +6,7 @@ import SwiftUI
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     var dockWindowController: MainWindowController?
+    private var settingsWindowController: SettingsWindowController?
     private var statusBarItem: NSStatusItem?
 
     let dockViewModel: DockViewModel
@@ -55,16 +56,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
     private func buildStatusMenu() -> NSMenu {
         let menu = NSMenu()
-        menu.addItem(
-            NSMenuItem(title: "Show/Hide Dock", action: #selector(toggleDock), keyEquivalent: "d")
+        let toggleDockItem = NSMenuItem(
+            title: "Show/Hide Dock",
+            action: #selector(toggleDock),
+            keyEquivalent: "d"
         )
+        toggleDockItem.target = self
+        menu.addItem(toggleDockItem)
+        menu.addItem(.separator())
+        let settingsItem = NSMenuItem(
+            title: "Settings…",
+            action: #selector(openSettings),
+            keyEquivalent: ","
+        )
+        settingsItem.target = self
+        menu.addItem(settingsItem)
         menu.addItem(.separator())
         menu.addItem(
-            NSMenuItem(title: "Settings…", action: #selector(openSettings), keyEquivalent: ",")
-        )
-        menu.addItem(.separator())
-        menu.addItem(
-            NSMenuItem(title: "Quit Extradock", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+            NSMenuItem(
+                title: "Quit Extradock",
+                action: #selector(NSApplication.terminate(_:)),
+                keyEquivalent: "q"
+            )
         )
         return menu
     }
@@ -91,8 +104,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     @objc private func openSettings() {
-        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
         NSApp.activate(ignoringOtherApps: true)
+
+        if settingsWindowController == nil {
+            settingsWindowController = SettingsWindowController(
+                settingsViewModel: settingsViewModel
+            )
+        }
+
+        settingsWindowController?.showWindow(nil)
     }
 
     @objc private func handleScreenChange() {

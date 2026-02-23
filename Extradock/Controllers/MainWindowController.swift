@@ -67,6 +67,11 @@ final class MainWindowController: NSWindowController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func showWindow(_ sender: Any?) {
+        guard let window else { return }
+        window.orderFrontRegardless()
+    }
+
     // MARK: - Positioning
 
     func positionWindow(for edge: DockEdge, offset: Double) {
@@ -127,4 +132,3 @@ final class MainWindowController: NSWindowController {
         }
     }
 }
-
