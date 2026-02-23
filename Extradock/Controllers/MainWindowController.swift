@@ -46,18 +46,10 @@ final class MainWindowController: NSWindowController {
     // MARK: - Settings Observers
 
     private func setupSettingsObservers() {
-        // Observe dock edge changes
-        settingsViewModel.$dockEdgeRaw
-            .dropFirst()
-            .sink { [weak self] (_: String) in
-                self?.updatePositionForSettings()
-            }
-            .store(in: &cancellables)
-
-        // Observe edge offset changes
-        settingsViewModel.$edgeOffset
-            .dropFirst()
-            .sink { [weak self] (_: Double) in
+        // Observe any changes from the settings view model and update position accordingly
+        settingsViewModel.objectWillChange
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
                 self?.updatePositionForSettings()
             }
             .store(in: &cancellables)
@@ -135,3 +127,4 @@ final class MainWindowController: NSWindowController {
         }
     }
 }
+
