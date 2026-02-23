@@ -1,4 +1,5 @@
 import AppKit
+import Combine
 import SwiftUI
 
 // MARK: - MainWindowController
@@ -6,6 +7,7 @@ import SwiftUI
 final class MainWindowController: NSWindowController {
     private let dockViewModel: DockViewModel
     private let settingsViewModel: SettingsViewModel
+    private var cancellables = Set<AnyCancellable>()
 
     init(dockViewModel: DockViewModel, settingsViewModel: SettingsViewModel) {
         self.dockViewModel = dockViewModel
@@ -37,6 +39,35 @@ final class MainWindowController: NSWindowController {
         panel.contentView = NSHostingView(rootView: contentView)
 
         super.init(window: panel)
+
+        setupSettingsObservers()
+    }
+
+    // MARK: - Settings Observers
+
+    private func setupSettingsObservers() {
+        // Observe dock edge changes
+        settingsViewModel.$dockEdgeRaw
+            .dropFirst()
+            .sink { [weak self] (_: String) in
+                self?.updatePositionForSettings()
+            }
+            .store(in: &cancellables)
+
+        // Observe edge offset changes
+        settingsViewModel.$edgeOffset
+            .dropFirst()
+            .sink { [weak self] (_: Double) in
+                self?.updatePositionForSettings()
+            }
+            .store(in: &cancellables)
+    }
+
+    private func updatePositionForSettings() {
+        positionWindow(
+            for: settingsViewModel.dockEdge,
+            offset: settingsViewModel.edgeOffset
+        )
     }
 
     @available(*, unavailable)
